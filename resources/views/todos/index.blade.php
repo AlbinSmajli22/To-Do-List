@@ -80,44 +80,49 @@
                             <!-- Modal body -->
                             <div class="p-6 space-y-6">
                                 <div class="mt-2">
-                                <form action="{{ route('todos.store') }}" method="POST">
-    @csrf
-    <div>
-        <label for="titulli" class="block text-sm font-medium text-gray-700">Titulli</label>
-        <div class="mt-1">
-            <input type="text" name="titulli" id="titulli" value="{{ old('titulli') }}"
-                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                required>
-            <x-input-error class="mt-2" :messages="$errors->get('titulli')" />
-        </div>
-    </div>
+                                    <form action="{{ route('todos.store') }}" method="POST">
+                                        @csrf
+                                        <div>
+                                            <label for="titulli"
+                                                class="block text-sm font-medium text-gray-700">Titulli</label>
+                                            <div class="mt-1">
+                                                <input type="text" name="titulli" id="titulli"
+                                                    value="{{ old('titulli') }}"
+                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    required>
+                                                <x-input-error class="mt-2" :messages="$errors->get('titulli')" />
+                                            </div>
+                                        </div>
 
-    <div>
-        <label for="pershkrimi" class="block text-sm font-medium text-gray-700">Pershkrimi</label>
-        <div class="mt-1">
-            <input type="text" name="pershkrimi" id="pershkrimi" value="{{ old('pershkrimi') }}"
-                class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                required>
-            <x-input-error class="mt-2" :messages="$errors->get('pershkrimi')" />
-        </div>
-    </div>
+                                        <div>
+                                            <label for="pershkrimi"
+                                                class="block text-sm font-medium text-gray-700">Pershkrimi</label>
+                                            <div class="mt-1">
+                                                <input type="text" name="pershkrimi" id="pershkrimi"
+                                                    value="{{ old('pershkrimi') }}"
+                                                    class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                    required>
+                                                <x-input-error class="mt-2" :messages="$errors->get('pershkrimi')" />
+                                            </div>
+                                        </div>
 
-    <div>
-        <label for="statusi" class="block text-sm font-medium text-gray-700">Status</label>
-        <div class="mt-1">
-            <select name="statusi" id="statusi">
-                <option value="0">Unfinished</option>
-                <option value="1">Done</option>
-            </select>
-            <x-input-error class="mt-2" :messages="$errors->get('statusi')" />
-        </div>
-    </div>
+                                        <div>
+                                            <label for="statusi"
+                                                class="block text-sm font-medium text-gray-700">Status</label>
+                                            <div class="mt-1">
+                                                <select name="statusi" id="statusi">
+                                                    <option value="0">Unfinished</option>
+                                                    <option value="1">Done</option>
+                                                </select>
+                                                <x-input-error class="mt-2" :messages="$errors->get('statusi')" />
+                                            </div>
+                                        </div>
 
-    <div class="mt-4">
-        <button type="submit"
-            class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-white bg-indigo-600 p-2 rounded-lg text-base font-medium">Add</button>
-    </div>
-</form>
+                                        <div class="mt-4">
+                                            <button type="submit"
+                                                class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 text-white bg-indigo-600 p-2 rounded-lg text-base font-medium">Add</button>
+                                        </div>
+                                    </form>
 
                                 </div>
                             </div>
@@ -130,7 +135,15 @@
                             <tr>
                                 <th
                                     class="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-800 uppercase">
-                                    Type
+                                    Titulli
+                                </th>
+                                <th
+                                    class="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-800 uppercase">
+                                    Pershkrimi
+                                </th>
+                                <th
+                                    class="px-6 py-4 text-xs font-medium tracking-wider text-left text-gray-800 uppercase">
+                                    Statusi
                                 </th>
                                 <th
                                     class="px-6 py-4 text-xs font-medium tracking-wider text-right text-gray-800 uppercase">
@@ -148,16 +161,17 @@
                                         <div class="text-sm font-medium text-gray-900">{{ $todo->pershkrimi }}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">{{ $todo->statusi === 0 ? 'Unfinished':'Done'}}</div>
+                                        <div class="text-sm font-medium text-gray-900">
+                                            {{ $todo->statusi === 0 ? 'Unfinished' : 'Done'}}</div>
                                     </td>
                                     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         <a data-modal-target="defaultModal{{ $todo->id }}"
                                             data-modal-toggle="defaultModal{{ $todo->id }}"
-                                            class="text-indigo-600 hover:text-indigo-900">Rediger</a>
+                                            class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                         <span class="mx-2 text-gray-300">|</span>
                                         <a data-modal-target="popup-modal{{ $todo->id }}"
                                             data-modal-toggle="popup-modal{{ $todo->id }}"
-                                            class="text-red-600 hover:text-red-900">Slet</a>
+                                            class="text-red-600 hover:text-red-900">Delete</a>
                                     </td>
                                 </tr>
                                 <div id="defaultModal{{ $todo->id }}" tabindex="-1" aria-hidden="true"

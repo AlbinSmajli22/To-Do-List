@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\SemundjaController;
 use App\Http\Controllers\TodosController;
-use App\Http\Controllers\SpecController;
 use Illuminate\Support\Facades\Route;
 
 /*
